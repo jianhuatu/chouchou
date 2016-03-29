@@ -1,0 +1,28 @@
+body,div,p,h1{
+	margin: 0;
+	padding: 0;
+}
+.header{
+	color: #fff;
+	background-color: #8c0202;
+	position: relative;
+}
+.top{
+	height: 20px;
+}
+.title{
+	text-align: center;
+	height:44px;
+	line-height: 44px;
+	font-size: 18px;
+}
+.detailData{
+	text-align: center;
+	height: 44px;
+	line-height: 44px;
+	width: 15%;
+	position: absolute;
+	top:20px;
+	right: 0;
+	font-size: 12px;
+}
