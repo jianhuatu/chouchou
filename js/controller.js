@@ -32,6 +32,6 @@
   });
 
   testController.controller("histCtrl",function($scope){
-    //$scope.message = "我是历史页面";
+    $scope.message = "我是历史页面";
   });
 })();
