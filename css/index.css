@@ -1,13 +1,20 @@
-body,div,p,h1{
+body,header,div,ul,li,p,h1{
 	margin: 0;
 	padding: 0;
 }
+h1{
+	font-size: 100%;
+}
+ul,li{
+	list-style: none;
+}
 .header{
 	color: #fff;
+	width: 100%;
 	background-color: #8c0202;
 	position: relative;
 }
-.top{
+.status{
 	height: 20px;
 }
 .title{
@@ -20,9 +27,38 @@ body,div,p,h1{
 	text-align: center;
 	height: 44px;
 	line-height: 44px;
-	width: 15%;
 	position: absolute;
 	top:20px;
-	right: 0;
+	right: 3%;
 	font-size: 12px;
 }
+.eventList{
+	/*margin-top:20px;*/
+}
+.eventList li{
+	float: left;
+	width: 25%;
+}
+.eventOne{
+	padding: 15%;
+	text-align: center;
+	font-size: 12px;
+}
+.eventOne img{
+	margin-bottom: 5px;
+	width: 100%;
+	border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

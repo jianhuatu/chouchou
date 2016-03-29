@@ -1,5 +1,12 @@
 <div dom-iscroll>
 	<div style="height:1000px">
-		<h1>{{message}}</h1>
+		<ul ng-repeat="data in list" class="eventList">
+			<li ng-click="addEvent(data.id,$index)">
+				<p class="eventOne">
+					<img ng-src="{{data.img}}">
+					<span>{{data.name}}</span>
+				</p>
+			</li>
+		</ul>
 	</div>
 </div>
