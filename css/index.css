@@ -8,6 +8,17 @@ h1{
 ul,li{
 	list-style: none;
 }
+.clearfloat:before,.clearfloat:after{
+	content:"";
+	display:table;
+	height:0;
+	font-size:0;
+	line-height:0;
+	visibility:hidden;
+}
+.clearfloat:after{
+	clear: both;
+}
 .header{
 	color: #fff;
 	width: 100%;

@@ -1,7 +1,7 @@
 <div dom-iscroll>
 	<div>
-		<ul ng-repeat="data in list" class="eventList">
-			<li ng-click="addEvent(data.id,$index)">
+		<ul class="eventList clearfloat">
+			<li ng-repeat="data in list" ng-click="addEvent(data.id,$index)">
 				<p class="eventOne">
 					<img ng-src="{{data.img}}">
 					<span>{{data.name}}</span>
