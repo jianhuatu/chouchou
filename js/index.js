@@ -1,7 +1,7 @@
 (function(){
   var testApp = angular.module("testApp",[
       'ngRoute',
-      'ngTouch',
+      'ngAnimate',
       'testController',
       'testDirective',
       'testservices'
