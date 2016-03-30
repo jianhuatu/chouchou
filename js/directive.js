@@ -13,19 +13,23 @@
   	}
   });
 
-  testDirective.directive("domIscroll",function(jQGlobalData,mainHeight){
+  testDirective.directive("domIscroll",function(jQGlobalData,elemetnHeight){
   	return {
   		restrict : "A",
   		link : function(scope, element, attrs){
   			element.css({
-  				height : mainHeight.val()+"px",
+  				height : elemetnHeight.sectionVal()+"px",
   				overflow : "hidden"
   			});
   			if(jQGlobalData.hasData("myScroll")){
   				jQGlobalData.getData("myScroll").destroy();
   				jQGlobalData.removeData("myScroll");
   			}
-  			jQGlobalData.setData("myScroll",new IScroll(element[0]));
+  			jQGlobalData.setData("myScroll",new IScroll(element[0],{
+          hScroll : false,
+          hScrollbar : false,
+          vScrollbar : false
+        }));
   		}
   	}
   });
