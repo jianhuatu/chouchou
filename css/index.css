@@ -35,6 +35,7 @@ ul,li{
 	font-size: 18px;
 }
 .detailData{
+	display: block;
 	text-align: center;
 	height: 44px;
 	line-height: 44px;
