@@ -61,7 +61,46 @@ ul,li{
 	width: 100%;
 	border-radius: 50%;
 }
-
+.history{
+	width: 90%;
+	position: relative;
+	margin: 10px auto;
+	height : 206px;
+	border-radius: 10px;
+	background: linear-gradient(to bottom, #e54444 0%,#820202 100%);
+	overflow: hidden;
+	color: #fff;
+	text-align: center;
+}
+.timeM{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 8%;
+	height: 100%;
+}
+.timeM span{
+	display: block;
+	line-height: 29.4286px;
+	height: 29.4286px;
+}
+.timeH{
+	margin-left: 8%;
+	width: 92%;
+	height: 100%;
+}
+.timeH > div{
+	height: 100%;
+	width: 100%;
+}
+.historyMain{
+	height: 90%;
+	width: 100%;
+}
+.historyHours{
+	height: 10%;
+	width: 100%;
+}
 
 
 

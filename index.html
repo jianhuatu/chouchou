@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" ng-app="testApp">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -27,8 +27,8 @@
 <script type="text/javascript" src="js/services.js"></script>
 </head>
 
-<body>
-	<header class="header" ng-include src="'tpl/header.html'" ng-controller="headerCtrl" no-touch-move>
+<body ng-app="testApp">
+	<header class="header" ng-include src="'tpl/header.html'" ng-controller="headerCtrl" ontouchmove="return false;">
 	</header>
 	<section ng-view class="main">
 	<section>
