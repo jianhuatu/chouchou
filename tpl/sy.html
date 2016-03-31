@@ -1,5 +1,5 @@
-<div dom-iscroll>
-	<div>
+<div id="wrapper" ng-iscroll='wrapper' ng-iscroll-click="true">
+	<div id="scroller">
 		<ul class="eventList clearfloat">
 			<li ng-repeat="data in list" ng-click="addEvent(data.id,$index)">
 				<p class="eventOne">

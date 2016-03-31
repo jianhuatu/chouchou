@@ -12,28 +12,4 @@
   		}
   	}
   });
-
-  testDirective.directive("domIscroll",function(jQGlobalData,elemetnWHVal,$timeout){
-  	return {
-  		restrict : "A",
-  		link : function(scope, element, attrs){
-  			element.css({
-  				height : elemetnWHVal.sectionHeight()+"px",
-  				overflow : "hidden"
-  			});
-
-        $timeout(function(){
-          if(jQGlobalData.hasData("myScroll")){
-            jQGlobalData.getData("myScroll").destroy();
-            jQGlobalData.removeData("myScroll");
-          }
-          jQGlobalData.setData("myScroll",new IScroll(element[0],{
-            hScroll : false,
-            hScrollbar : false,
-            vScrollbar : false
-          }));
-        });
-  		}
-  	}
-  });
 })()

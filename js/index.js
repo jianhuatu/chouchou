@@ -1,6 +1,7 @@
 (function(){
   var testApp = angular.module("testApp",[
       'ngRoute',
+      'ng-iscroll',
       'testController',
       'testDirective',
       'testservices'
