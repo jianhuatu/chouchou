@@ -69,8 +69,9 @@ ul,li{
 	border-radius: 10px;
 	background: linear-gradient(to bottom, #e54444 0%,#820202 100%);
 	overflow: hidden;
-	color: #fff;
+	color: #EE8262;
 	text-align: center;
+	font-size: 12px;
 }
 .timeM{
 	position: absolute;
@@ -81,12 +82,13 @@ ul,li{
 }
 .timeM span{
 	display: block;
-	line-height: 29.4286px;
-	height: 29.4286px;
+	height: 14.28%;
+	line-height: 450%;
 }
 .timeH{
 	margin-left: 8%;
-	width: 92%;
+	margin-right: 2%;
+	width: 90%;
 	height: 100%;
 }
 .timeH > div{
@@ -101,7 +103,14 @@ ul,li{
 	height: 10%;
 	width: 100%;
 }
-
+.historyHours span{
+	display: block;
+	float: left;
+	width: 8.3333%;
+	height: 100%;
+	border-top: 1px solid #e54444;
+	line-height: 150%;
+}
 
 
 
