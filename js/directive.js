@@ -13,23 +13,26 @@
   	}
   });
 
-  testDirective.directive("domIscroll",function(jQGlobalData,elemetnHeight){
+  testDirective.directive("domIscroll",function(jQGlobalData,elemetnWHVal,$timeout){
   	return {
   		restrict : "A",
   		link : function(scope, element, attrs){
   			element.css({
-  				height : elemetnHeight.sectionVal()+"px",
+  				height : elemetnWHVal.sectionHeight()+"px",
   				overflow : "hidden"
   			});
-  			if(jQGlobalData.hasData("myScroll")){
-  				jQGlobalData.getData("myScroll").destroy();
-  				jQGlobalData.removeData("myScroll");
-  			}
-  			jQGlobalData.setData("myScroll",new IScroll(element[0],{
-          hScroll : false,
-          hScrollbar : false,
-          vScrollbar : false
-        }));
+
+        $timeout(function(){
+          if(jQGlobalData.hasData("myScroll")){
+            jQGlobalData.getData("myScroll").destroy();
+            jQGlobalData.removeData("myScroll");
+          }
+          jQGlobalData.setData("myScroll",new IScroll(element[0],{
+            hScroll : false,
+            hScrollbar : false,
+            vScrollbar : false
+          }));
+        });
   		}
   	}
   });

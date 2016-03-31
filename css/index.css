@@ -82,8 +82,8 @@ ul,li{
 }
 .timeM span{
 	display: block;
-	height: 14.28%;
-	line-height: 450%;
+	height: 15%;
+	line-height: 400%;
 }
 .timeH{
 	margin-left: 8%;
@@ -98,6 +98,7 @@ ul,li{
 .historyMain{
 	height: 90%;
 	width: 100%;
+	position: relative;
 }
 .historyHours{
 	height: 10%;
@@ -111,7 +112,30 @@ ul,li{
 	border-top: 1px solid #e54444;
 	line-height: 150%;
 }
-
+.iconHistory{
+	display: block;
+	width :22px;
+	height: 22px;
+	position: absolute;
+	left: 0;
+	top: 155px;
+}
+.iconHistory img{
+	width: 100%;
+	border-radius: 50%;
+}
+/*.tag{
+	position: absolute;
+	bottom: 2px;
+	font-size: 10px;
+	word-spacing: -5em;
+}
+.tag span:nth-child(1){
+	vertical-align: super;
+}
+.tag span:nth-child(2){
+	vertical-align: sub;
+}*/
 
 
 

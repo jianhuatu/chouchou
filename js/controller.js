@@ -17,13 +17,14 @@
 
   testController.controller("syCtrl",function($scope){
     $scope.list = [
-      {id:"baba",name:"臭臭",img:"img/baba.png"},
-      {id:"home",name:"宅着",img:"img/home.png"},
-      {id:"love",name:"爱爱",img:"img/love.png"},
-      {id:"movie",name:"看电影",img:"img/movie.png"},
-      {id:"shopping",name:"购物",img:"img/shopping.png"},
-      {id:"sport",name:"运动",img:"img/sport.png"},
-      {id:"travel",name:"旅游",img:"img/travel.png"},
+      {id:"baba",name:"臭臭",img:"img/icons-128/baba.png"},
+      {id:"home",name:"宅着",img:"img/icons-128/home.png"},
+      {id:"love",name:"爱爱",img:"img/icons-128/love.png"},
+      {id:"movie",name:"看电影",img:"img/icons-128/movie.png"},
+      {id:"shopping",name:"购物",img:"img/icons-128/shopping.png"},
+      {id:"sport",name:"运动",img:"img/icons-128/sport.png"},
+      {id:"travel",name:"旅游",img:"img/icons-128/travel.png"},
+      {id:"travel",name:"吃饭",img:"img/icons-128/eat.png"},
     ];
 
     $scope.addEvent = function(id,i){

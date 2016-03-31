@@ -30,11 +30,11 @@
     }
   });
 
-  testservices.factory("elemetnHeight",function(){
+  testservices.factory("elemetnWHVal",function(){
     var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
     var headerHeight = angular.element("header").outerHeight();
     return {
-      sectionVal : function(){
+      sectionHeight : function(){
         return clientHeight-headerHeight;
       }
     }
