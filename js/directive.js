@@ -12,4 +12,17 @@
   		}
   	}
   });
+
+  testDirective.directive("ngTap",function(){
+    return {
+      restrict : "A",
+      controller : function($scope, $element){
+        $($element[0]).tap(function(event){
+          var method = $element.attr("ng-tap");
+          $scope.$event = event;
+          $scope.$apply(method);
+        });
+      }
+    }
+  });
 })()
