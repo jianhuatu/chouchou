@@ -28,7 +28,15 @@
     ];
 
     $scope.addEvent = function(id,i){
-      alert($scope.list[i]['name']);
+      $.ajax({
+        url : "http://qxu1146180073.my3w.com/cordova/",
+        data : "",
+        type : "post",
+        dataType : "json",
+        success : function(msg){
+          alert(msg.code);
+        }
+      });
     }
   });
 
