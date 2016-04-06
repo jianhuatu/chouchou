@@ -15,7 +15,7 @@
     }
   })
 
-  testController.controller("syCtrl",function($scope){
+  testController.controller("syCtrl",function($scope,$http){
     $scope.list = [
       {id:"baba",name:"臭臭",img:"img/icons-128/baba.png"},
       {id:"home",name:"宅着",img:"img/icons-128/home.png"},
@@ -28,14 +28,16 @@
     ];
 
     $scope.addEvent = function(id,i){
-      $.ajax({
-        url : "http://qxu1146180073.my3w.com/cordova/",
-        data : "",
-        type : "post",
-        dataType : "json",
-        success : function(msg){
-          alert(msg.code);
-        }
+      $http({
+        url : 'http://qxu1146180073.my3w.com/cordova/',
+        method : "post",
+        data : 'id='+id,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        responseType : 'json'
+      }).success(function(data){
+        alert(data.info.msg);
       });
     }
   });
