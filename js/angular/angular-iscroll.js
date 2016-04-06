@@ -37,8 +37,8 @@ angular.module('ng-iscroll', []).directive('ngIscroll', function (elemetnWHVal)
         momentum: true,
         hScrollbar: false,
         mouseWheel: true,
-        click: true,
-        tap: true
+        click: false,
+        tap: false
       };
 
       // scroll key /id

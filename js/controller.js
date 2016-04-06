@@ -28,7 +28,7 @@
     ];
 
     $scope.addEvent = function(id,i){
-      console.log($scope.list[i]['name']);
+      alert($scope.list[i]['name']);
     }
   });
 
