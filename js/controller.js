@@ -24,12 +24,12 @@
       {id:"shopping",name:"购物",img:"img/icons-128/shopping.png"},
       {id:"sport",name:"运动",img:"img/icons-128/sport.png"},
       {id:"travel",name:"旅游",img:"img/icons-128/travel.png"},
-      {id:"travel",name:"吃饭",img:"img/icons-128/eat.png"},
+      {id:"eat",name:"吃饭",img:"img/icons-128/eat.png"},
     ];
 
     $scope.addEvent = function(id,i){
       $http({
-        url : 'http://qxu1146180073.my3w.com/cordova/',
+        url : 'http://101.200.200.177:3000/',
         method : "post",
         data : 'id='+id,
         headers: {
