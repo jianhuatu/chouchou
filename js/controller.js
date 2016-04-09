@@ -16,20 +16,20 @@
   })
 
   testController.controller("syCtrl",function($scope,$http){
-    $scope.list = [
-      {id:"baba",name:"臭臭",img:"img/icons-128/baba.png"},
-      {id:"home",name:"宅着",img:"img/icons-128/home.png"},
-      {id:"love",name:"爱爱",img:"img/icons-128/love.png"},
-      {id:"movie",name:"看电影",img:"img/icons-128/movie.png"},
-      {id:"shopping",name:"购物",img:"img/icons-128/shopping.png"},
-      {id:"sport",name:"运动",img:"img/icons-128/sport.png"},
-      {id:"travel",name:"旅游",img:"img/icons-128/travel.png"},
-      {id:"eat",name:"吃饭",img:"img/icons-128/eat.png"},
-    ];
+    $http({
+      url : 'http://101.200.200.177:3000/lists',
+      method : "post",
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      responseType : 'json'
+    }).success(function(data){
+      $scope.list = data;
+    });
 
     $scope.addEvent = function(id,i){
       $http({
-        url : 'http://101.200.200.177:3000/',
+        url : 'http://101.200.200.177:3000/addevent',
         method : "post",
         data : 'id='+id,
         headers: {
@@ -37,7 +37,7 @@
         },
         responseType : 'json'
       }).success(function(data){
-        alert(data.info.msg);
+        alert(data.name);
       });
     }
   });
