@@ -1,3 +1,4 @@
 <p class="status"></p>
-<h1 class="title">{{title}}</h1>
-<span class="detailData" ng-click="goHistory()">{{tool}}</span>
+<h1 class="title">{{titleVal}}</h1>
+<span ng-if="headerShow" class="detailData" ng-show="userShow" ng-click="goshouye()">今日</span>
+<span ng-if="headerShow" class="detailData" ng-hide="userShow" ng-click="userData()">历史</span>

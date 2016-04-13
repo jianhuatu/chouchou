@@ -1,36 +1,7 @@
 (function(){
-  var testservices = angular.module("testservices",[]);
+  var chouchouServices = angular.module("chouchouservices",[]);
 
-  // testservices.factory("jQGlobalData",function(){
-  //   return {
-  //     setData : function(key,data){
-  //       if(!$.setData)$.setData = new Object();
-  //       $.setData[key] = data;
-  //       return $.setData;
-  //     },
-  //     getData : function(key){
-  //       if(!$.setData)$.setData = new Object();
-  //       return $.setData[key];
-  //     },
-  //     removeData : function(key){
-  //       if(!$.setData)$.setData = new Object();
-  //       if(this.hasData(key)){
-  //         delete $.setData[key];
-  //         return true;
-  //       }else{
-  //         return false;
-  //       }
-  //       return true;
-  //     },
-  //     hasData : function(key){
-  //       if(!$.setData)$.setData = new Object();
-  //       if(angular.isUndefined($.setData[key]))return false;
-  //       return true;
-  //     }
-  //   }
-  // });
-
-  testservices.factory("elemetnWHVal",function(){
+  chouchouServices.factory("elemetnWHVal",function(){
     var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
     var headerHeight = $("header").height();
     return {
@@ -39,4 +10,34 @@
       }
     }
   });
+
+  chouchouServices.factory("titleStatus",function($location){
+    return function(){
+      return $location.path()=="/userData" ? true : false;
+    }
+  });
+
+  chouchouServices.factory("headerStatus",function($location){
+    var arr = [
+      "/userData",
+      "/",
+      ""
+    ];
+    return function(){
+      return $.inArray($location.path(),arr)>-1 ? true : false;
+    }
+  });
+
+  chouchouServices.factory("titleData",function($location){
+    return {
+      getTitleVal : function(){
+        var thisUrl = $location.path();
+        switch(thisUrl){
+          case "/login" : return "登录";break;
+          case "/register" : return "注册";break;
+          default : return "臭臭";break;
+        }
+      }
+    }
+  })
 })();

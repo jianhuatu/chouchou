@@ -1,7 +1,7 @@
 (function(){
-  var testDirective = angular.module("testDirective",[]);
+  var chouchouDirective = angular.module("chouchouDirective",[]);
 
-  testDirective.directive("noTouchMove",function(){
+  chouchouDirective.directive("noTouchMove",function(){
   	return {
   		restrict : "A",
   		link : function(scope, element, attrs){
@@ -13,7 +13,7 @@
   	}
   });
 
-  testDirective.directive("ngTap",function(){
+  chouchouDirective.directive("ngTap",function(){
     return {
       restrict : "A",
       controller : function($scope, $element){

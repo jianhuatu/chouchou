@@ -1,20 +1,26 @@
 (function(){
-  var testApp = angular.module("testApp",[
+  var chouchouApp = angular.module("chouchouApp",[
       'ngRoute',
       'ng-iscroll',
-      'testController',
-      'testDirective',
-      'testservices'
+      'chouchouController',
+      'chouchouDirective',
+      'chouchouservices'
     ]);
 
-  testApp.config(function($routeProvider,$locationProvider){
+  chouchouApp.config(function($routeProvider,$locationProvider){
       $routeProvider.
       when("/",{
         templateUrl : "tpl/sy.html",
         controller : "syCtrl"
-      }).when("/history",{
-        templateUrl : "tpl/history.html",
-        controller : "histCtrl"
+      }).when("/userData",{
+        templateUrl : "tpl/userdata.html",
+        controller : "userCtrl"
+      }).when("/login",{
+        templateUrl : "tpl/login.html",
+        controller : "loginCtrl"
+      }).when("/register",{
+        templateUrl : "tpl/register.html",
+        controller : "loginCtrl"
       });
       $locationProvider.html5Mode(false).hashPrefix("!");
   });

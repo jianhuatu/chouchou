@@ -1,21 +1,25 @@
 (function(){
-  var testController = angular.module("testController",[]);
+  var chouchouController = angular.module("chouchouController",[]);
 
-  testController.controller("headerCtrl",function($scope,$location){
-    $scope.title = "臭臭";
-    $scope.tool = "历史";
-    $scope.goHistory = function(){
-      if($location.path()=="/history"){
-        $scope.tool = "历史";
-        $location.path("/");
-      }else{
-        $scope.tool = "首页";
-        $location.path("/history");
-      }
+  chouchouController.controller("headerCtrl",function($scope,$location,titleStatus,headerStatus,titleData){
+    $scope.titleVal = titleData.getTitleVal();
+    $scope.userShow = titleStatus();
+    $scope.headerShow = headerStatus();
+
+    $scope.userData = function(){
+      $location.path("/userData");
+      $scope.userShow = titleStatus();
+      $scope.headerShow = headerStatus();
+    }
+
+    $scope.goshouye = function(){
+      $location.path("/");
+      $scope.userShow = titleStatus();
+      $scope.headerShow = headerStatus();
     }
   })
 
-  testController.controller("syCtrl",function($scope,$http){
+  chouchouController.controller("syCtrl",function($scope,$http){
     $http({
       url : 'http://101.200.200.177:3000/lists',
       method : "post",
@@ -42,7 +46,15 @@
     }
   });
 
-  testController.controller("histCtrl",function($scope){
-    $scope.message = "我是历史页面";
+  chouchouController.controller("loginCtrl",function($scope){
+    
+  });
+
+  chouchouController.controller("register",function($scope){
+
+  });
+
+  chouchouController.controller("userCtrl",function($scope){
+    $scope.message = "我是用户页面";
   });
 })();
