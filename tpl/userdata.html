@@ -1,9 +1,13 @@
-<div dom-iscroll>
-	<div style="height:1000px">
-		<h1>{{message}}</h1>
-		<div>
-			<a href="/"></a>
-			<a href=""></a>
+<header class="header" ng-include src="'tpl/header.html'" ng-controller="headerCtrl" no-touch-move>
+</header>
+<section  class="main">
+	<div ng-iscroll>
+		<div style="height:1000px">
+			<h1>{{message}}</h1>
+			<div>
+				<a href="/"></a>
+				<a href=""></a>
+			</div>
 		</div>
 	</div>
-</div>
+</section>
