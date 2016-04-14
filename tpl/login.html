@@ -1,18 +1,18 @@
 <header class="header" ng-include src="'tpl/header.html'" ng-controller="headerCtrl" no-touch-move>
 </header>
-<section  class="main">
+<section  class="main" id="wrapper" ng-iscroll>
 	<div class="logCon">
 		<p class="logP">
-			<input class="logInput" type="text" placeholder="请输入用户名">	
+			<input class="logInput" ng-model="userName" type="text" placeholder="请输入用户名/邮箱">	
 		</p>
 		<p class="logP">
-			<input class="logInput" type="password" placeholder="请输入密码">	
+			<input class="logInput" ng-model="password" type="password" placeholder="请输入密码">	
 		</p>
 		<p class="logP">
-			<button class="logButton">登 录</button>	
+			<button class="logButton" ng-tap="submitLogin()">登 录</button>	
 		</p>
 		<p class="logP">
-			<a class="logA" href="/register">没有账号？请注册</a>
+			<a class="logA" href="javascript:void(0);" ng-tap="goRegister()">没有账号？请注册</a>
 		</p>
 	</div>
 </section>

@@ -13,14 +13,14 @@
         templateUrl : "tpl/sy.html",
         controller : "syCtrl"
       }).when("/userData",{
-        templateUrl : "tpl/userdata.html",
-        controller : "userCtrl"
+        templateUrl : "tpl/register.html",
+        controller : "registerCtrl"
       }).when("/login",{
         templateUrl : "tpl/login.html",
         controller : "loginCtrl"
       }).when("/register",{
         templateUrl : "tpl/register.html",
-        controller : "loginCtrl"
+        controller : "registerCtrl"
       });
       $locationProvider.html5Mode(false).hashPrefix("!");
   });

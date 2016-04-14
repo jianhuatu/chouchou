@@ -46,12 +46,48 @@
     }
   });
 
-  chouchouController.controller("loginCtrl",function($scope){
-    
+  chouchouController.controller("loginCtrl",function($scope,$location,userData){
+    $scope.submitLogin = function(){
+      var userName = $scope.userName;
+      var password = $scope.password;
+
+      userData.loginUser(userName,password,function(data){
+        alert(data.msg);
+        if(data.code==="0000"){
+          $location.path("/");
+        }else{
+          return false;
+        }
+      });
+    }
+
+    $scope.goRegister = function(){
+      $location.path("/register");
+    }
   });
 
-  chouchouController.controller("register",function($scope){
+  chouchouController.controller("registerCtrl",function($scope,$location,userData){
+    $scope.submitRegister = function(){
+      var userName = $scope.userName;
+      var password = $scope.password;
+      var respassword = $scope.respassword;
+      var email = $scope.email;
 
+      if(!userData.checkRegister(userName,password,respassword,email))return false;
+
+      userData.registerUser(userName,password,email,function(data){
+        alert(data.msg);
+        if(data.code==="0000"){
+          $location.path("/");
+        }else{
+          return false;
+        }
+      });
+    }
+
+    $scope.goLogin = function(){
+      $location.path("/login");
+    }
   });
 
   chouchouController.controller("userCtrl",function($scope){
