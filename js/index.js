@@ -4,17 +4,17 @@
       'ng-iscroll',
       'chouchouController',
       'chouchouDirective',
-      'chouchouservices'
+      'chouchouServices'
     ]);
 
-  chouchouApp.config(function($routeProvider,$locationProvider){
+  chouchouApp.config(function($routeProvider,$locationProvider,$httpProvider){
       $routeProvider.
       when("/",{
         templateUrl : "tpl/sy.html",
         controller : "syCtrl"
       }).when("/userData",{
-        templateUrl : "tpl/register.html",
-        controller : "registerCtrl"
+        templateUrl : "tpl/user.html",
+        controller : "userCtrl"
       }).when("/login",{
         templateUrl : "tpl/login.html",
         controller : "loginCtrl"
@@ -22,6 +22,7 @@
         templateUrl : "tpl/register.html",
         controller : "registerCtrl"
       });
+      $httpProvider.interceptors.push('authInterceptor');
       $locationProvider.html5Mode(false).hashPrefix("!");
   });
 })();

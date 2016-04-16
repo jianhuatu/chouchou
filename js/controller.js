@@ -19,16 +19,23 @@
     }
   })
 
-  chouchouController.controller("syCtrl",function($scope,$http){
+  chouchouController.controller("syCtrl",function($scope,$http,$window,$location){
+    var toKenId = $window.localStorage.getItem("chouchou_token_Id");
+    if(!toKenId){
+      $location.path("/login");
+      return false;
+    }
     $http({
       url : 'http://101.200.200.177:3000/lists',
       method : "post",
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
       responseType : 'json'
     }).success(function(data){
-      $scope.list = data;
+      if(data.code!=="0000"){
+        alert(data.msg);
+        //$location.path("/")
+        return false;
+      }
+      $scope.list = data.info;
     });
 
     $scope.addEvent = function(id,i){
@@ -36,9 +43,6 @@
         url : 'http://101.200.200.177:3000/addevent',
         method : "post",
         data : 'id='+id,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
         responseType : 'json'
       }).success(function(data){
         alert(data.name);
@@ -46,16 +50,17 @@
     }
   });
 
-  chouchouController.controller("loginCtrl",function($scope,$location,userData){
+  chouchouController.controller("loginCtrl",function($scope,$location,$window,userData){
     $scope.submitLogin = function(){
       var userName = $scope.userName;
       var password = $scope.password;
 
       userData.loginUser(userName,password,function(data){
-        alert(data.msg);
         if(data.code==="0000"){
+          $window.localStorage.setItem("chouchou_token_Id",data.info.tokenId);
           $location.path("/");
         }else{
+          alert(data.msg);
           return false;
         }
       });
@@ -66,7 +71,7 @@
     }
   });
 
-  chouchouController.controller("registerCtrl",function($scope,$location,userData){
+  chouchouController.controller("registerCtrl",function($scope,$location,$window,userData){
     $scope.submitRegister = function(){
       var userName = $scope.userName;
       var password = $scope.password;
@@ -76,10 +81,11 @@
       if(!userData.checkRegister(userName,password,respassword,email))return false;
 
       userData.registerUser(userName,password,email,function(data){
-        alert(data.msg);
         if(data.code==="0000"){
+          $window.localStorage.setItem("chouchou_token_Id",data.info.tokenId);
           $location.path("/");
         }else{
+          alert(data.msg);
           return false;
         }
       });
@@ -90,7 +96,12 @@
     }
   });
 
-  chouchouController.controller("userCtrl",function($scope){
+  chouchouController.controller("userCtrl",function($scope,$location,$window){
     $scope.message = "我是用户页面";
+
+    $scope.clearUserData = function(){ 
+      $window.localStorage.removeItem("chouchou_token_Id");
+      $location.path("/login");
+    }
   });
 })();

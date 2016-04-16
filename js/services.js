@@ -1,5 +1,5 @@
 (function(){
-  var chouchouServices = angular.module("chouchouservices",[]);
+  var chouchouServices = angular.module("chouchouServices",[]);
 
   chouchouServices.factory("elemetnWHVal",function(){
     var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
@@ -41,13 +41,13 @@
     }
   })
 
-  chouchouServices.factory("userData",function($http){
+  chouchouServices.factory("userData",function($http,encryption){
     return {
       registerUser : function(user,pwd,email,succFun){
         $http({
           url : 'http://101.200.200.177:3000/users/register',
           method : "post",
-          data : "userName="+user+"&pwd="+pwd+"&email="+email,
+          data : "userName="+user+"&pwd="+encryption.md5(pwd)+"&email="+email,
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },
@@ -60,7 +60,7 @@
         $http({
           url : 'http://101.200.200.177:3000/users/login',
           method : "post",
-          data : "userName="+user+"&pwd="+pwd,
+          data : "userName="+user+"&pwd="+encryption.md5(pwd),
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },
@@ -106,4 +106,33 @@
     }
 
   })
+
+  chouchouServices.factory("encryption",function(){
+    return {
+      md5 : function(str){
+        return hex_md5(str);
+      }
+    } 
+  });
+
+  chouchouServices.factory('authInterceptor', function ($rootScope, $q, $window) {
+
+    return {
+      request: function (config) {
+        if(config.url.indexOf("101.200.200.177")<0)return config;
+        config.headers = config.headers || {};
+        config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        if ($window.localStorage.chouchou_token_Id) {
+          config.headers.Authorization = "chouchou"+$window.localStorage.chouchou_token_Id;
+        }
+        return config;
+      },
+      response: function (response) {
+        if (response.status === 401) {
+          $location.path("/login");
+        }
+        return response || $q.when(response);
+      }
+    };
+  });
 })();
