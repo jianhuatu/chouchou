@@ -35,6 +35,7 @@
         //$location.path("/")
         return false;
       }
+      $scope.dataShow = true;
       $scope.list = data.info;
     });
 
