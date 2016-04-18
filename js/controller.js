@@ -19,7 +19,7 @@
     }
   })
 
-  chouchouController.controller("syCtrl",function($scope,$http,$window,$location){
+  chouchouController.controller("syCtrl",function($scope,$http,$window,$location,getCurrentPosition){
     var toKenId = $window.localStorage.getItem("chouchou_token_Id");
     if(!toKenId){
       $location.path("/login");
@@ -32,7 +32,6 @@
     }).success(function(data){
       if(data.code!=="0000"){
         alert(data.msg);
-        //$location.path("/")
         return false;
       }
       $scope.dataShow = true;
@@ -40,6 +39,10 @@
     });
 
     $scope.addEvent = function(id,i){
+      getCurrentPosition(function(pos){
+        alert(pos.lat+"_"+pos.lng);
+      });
+      return false;
       $http({
         url : 'http://101.200.200.177:3000/addevent',
         method : "post",

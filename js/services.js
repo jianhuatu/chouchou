@@ -129,4 +129,15 @@
       }
     };
   });
+
+  chouchouServices.factory("getCurrentPosition",function(){
+    return function(fun){
+     navigator.geolocation.getCurrentPosition(function(position){
+      alert(position.coords.latitude+"_"+position.coords.longitude);
+     },function(error){
+      alert(error.message);
+     });
+    }
+    
+  })
 })();
