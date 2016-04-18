@@ -48,9 +48,6 @@
           url : 'http://101.200.200.177:3000/users/register',
           method : "post",
           data : "userName="+user+"&pwd="+encryption.md5(pwd)+"&email="+email,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
           responseType : 'json'
         }).success(function(data){
           succFun(data);
@@ -61,9 +58,6 @@
           url : 'http://101.200.200.177:3000/users/login',
           method : "post",
           data : "userName="+user+"&pwd="+encryption.md5(pwd),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
           responseType : 'json'
         }).success(function(data){
           succFun(data);
