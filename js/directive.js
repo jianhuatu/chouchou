@@ -20,6 +20,7 @@
         $($element[0]).tap(function(event){
           var method = $element.attr("ng-tap");
           $scope.$event = event;
+          $scope.obj = $element;
           $scope.$apply(method);
         });
       }

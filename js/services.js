@@ -101,6 +101,84 @@
 
   })
 
+  chouchouServices.factory("getLists",function($http){
+    return function(scope){
+      $http({
+        url : 'http://101.200.200.177:3000/lists',
+        method : "post",
+        responseType : 'json'
+      }).success(function(data){
+        if(data.code!=="0000"){
+          alert(data.msg);
+          return false;
+        }
+        scope.dataShow = true;
+        scope.list = data.info;
+      });
+    }
+  });
+
+  chouchouServices.factory("setEvent",function($http){
+    return function(reqData,succFun){
+      var postData = [];
+      angular.forEach(reqData,function(data,key){
+        if(key=="position"){
+          angular.forEach(reqData[key],function(poD,poK){
+            poK=poK.replace(" ","");
+            postData.push("position"+poK+"="+poD);
+          })
+          return false;
+        }
+        postData.push(key+"="+data);
+      });
+      $http({
+        url : 'http://101.200.200.177:3000/addevent',
+        method : "post",
+        data : postData.join("&"),
+        responseType : 'json'
+      }).success(function(data){
+        // console.log(reqData);
+        succFun();
+        alert(data.msg);
+      });
+    }
+  })
+
+  chouchouServices.factory("addEvent",function($http,getCurrentPosition,setEvent){
+   return function(id,succFun){
+    var userData = {
+      eventId : id,
+      positionCode : "timeOut",
+      positionMsg : "超时",
+      position : {
+        'Longitude' : "", 
+        'Altitude' : "",   
+        'Accuracy' : "",          
+        'Altitude Accuracy' : "", 
+        'Heading' : "",      
+        'Speed' : "",             
+        'Timestamp' : ""   
+      }
+    }
+
+    var checkHttp = false;
+    getCurrentPosition(function(data){
+      if(checkHttp==="setTime")return false;
+      checkHttp = true;
+      userData.positionCode = data.code;
+      userData.positionMsg = data.msg;
+      userData.position = data.info;
+      setEvent(userData,succFun);
+    });
+
+    setTimeout(function(){
+      if(checkHttp===true)return false;
+      setEvent(userData,succFun);
+      checkHttp = "setTime";
+    },2000);
+   }
+  });
+
   chouchouServices.factory("encryption",function(){
     return {
       md5 : function(str){
@@ -133,9 +211,25 @@
   chouchouServices.factory("getCurrentPosition",function(){
     return function(fun){
      navigator.geolocation.getCurrentPosition(function(position){
-      alert(position.coords.latitude+"_"+position.coords.longitude);
+        fun({
+          code : "0000",
+          msg : "成功",
+          info : position['coords']
+        });
      },function(error){
-      alert(error.message);
+        fun({
+          code : error.code,
+          msg : error.message,
+          info : {
+            'Longitude' : "", 
+            'Altitude' : "",   
+            'Accuracy' : "",          
+            'Altitude Accuracy' : "", 
+            'Heading' : "",      
+            'Speed' : "",             
+            'Timestamp' : ""       
+          }
+        })
      });
     }
     

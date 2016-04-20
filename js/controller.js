@@ -19,39 +19,24 @@
     }
   })
 
-  chouchouController.controller("syCtrl",function($scope,$http,$window,$location,getCurrentPosition){
+  chouchouController.controller("syCtrl",function($scope,$window,$location,getLists,addEvent){
     var toKenId = $window.localStorage.getItem("chouchou_token_Id");
     if(!toKenId){
       $location.path("/login");
       return false;
     }
-    $http({
-      url : 'http://101.200.200.177:3000/lists',
-      method : "post",
-      responseType : 'json'
-    }).success(function(data){
-      if(data.code!=="0000"){
-        alert(data.msg);
-        return false;
-      }
-      $scope.dataShow = true;
-      $scope.list = data.info;
-    });
+    $scope.ck=1;
+    getLists($scope);
 
-    $scope.addEvent = function(id,i){
-      getCurrentPosition(function(pos){
-        alert(pos.lat+"_"+pos.lng);
+    $scope.addEvent = function(id){
+      var thisObj = this.obj;
+      var thisCk = thisObj.attr("data-ck");
+      if(thisCk!=="1")return false;
+      thisObj.attr("data-ck","0");
+      addEvent(id,function(){
+        thisObj.attr("data-ck","1")
       });
-      return false;
-      $http({
-        url : 'http://101.200.200.177:3000/addevent',
-        method : "post",
-        data : 'id='+id,
-        responseType : 'json'
-      }).success(function(data){
-        alert(data.name);
-      });
-    }
+    };
   });
 
   chouchouController.controller("loginCtrl",function($scope,$location,$window,userData){

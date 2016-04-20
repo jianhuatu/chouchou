@@ -3,7 +3,7 @@
 <section  class="main" id="wrapper" ng-iscroll>
 	<div ng-show="dataShow">
 		<ul class="eventList clearfloat">
-			<li ng-repeat="data in list" ng-tap="addEvent(data.id,$index)" data-tt="{{test}}">
+			<li ng-repeat="data in list" ng-tap="addEvent(data.id)" data-ck="{{ck}}">
 				<p class="eventOne">
 					<img ng-src="{{data.img}}">
 					<span>{{data.name}}</span>
