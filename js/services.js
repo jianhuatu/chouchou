@@ -112,8 +112,24 @@
           alert(data.msg);
           return false;
         }
-        scope.dataShow = true;
+        scope.show = true;
         scope.list = data.info;
+      });
+    }
+  });
+
+  chouchouServices.factory("getToDay",function($http){
+    return function(scope){
+      $http({
+        url : 'http://101.200.200.177:3000/lists/today',
+        method : "post",
+        responseType : 'json'
+      }).success(function(data){
+        if(data.code!=="0000"){
+          alert(data.msg);
+          return false;
+        }
+        scope.todayEvent = data.info;
       });
     }
   });

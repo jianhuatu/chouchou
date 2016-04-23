@@ -22,6 +22,22 @@
           $scope.$event = event;
           $scope.obj = $element;
           $scope.$apply(method);
+          event.preventDefault();
+          return false;
+        });
+      }
+    }
+  });
+
+  chouchouDirective.directive("transDom",function(){
+    return {
+      restrict : "A",
+      controller : function($scope, $element){
+        $scope.$watch("",function(){
+          setTimeout(function(){
+            var thisClass=$element.attr("class-trans-name");
+            $element.addClass(thisClass);
+          }, 100);
         });
       }
     }

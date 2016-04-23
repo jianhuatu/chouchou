@@ -2,7 +2,7 @@
 </header>
 <section  class="main" id="wrapper" ng-iscroll>
 	<div>
-		<div class="history" trans-dom class-trans-name="todayTrans">
+		<div class="history">
 			<div class="timeM">
 				<span>60</span>
 				<span>50</span>
@@ -18,7 +18,8 @@
 			<div class="timeH">
 				<div>
 					<div class="historyMain">
-						<span class="iconHistory" ng-repeat="data in todayEvent" style="left:{{$index*40}}px;"><img src="img/icons-40/{{data.eventId}}.png"></span>
+						<span class="iconHistory"><img src="img/icons-40/baba.png"></span>
+						<span class="iconHistory" style="left:40px;"><img src="img/icons-40/eat.png"></span>
 					</div>
 					<div class="historyHours clearfloat">
 						<span>11</span>
@@ -37,8 +38,8 @@
 				</div>
 			</div>
 		</div>
-		<ul class="clearfloat eventList" trans-dom class-trans-name="eventTrans">
-			<li ng-repeat="data in list" ng-tap="addEvent(data.id)" data-ck="{{ck}}">
+		<ul class="eventList clearfloat">
+			<li ng-repeat="data in list" ng-tap="addEvent(data.id)" data-ck="{{ck}}" class="eventTrans">
 				<p class="eventOne">
 					<img ng-src="{{data.img}}">
 					<span>{{data.name}}</span>
