@@ -1,10 +1,12 @@
 .eventList{
 	transition: 5s ease-out all;
 	-webkit-transition: 0.5s ease-in-out all;
-	transform:translateY(500px);
+	-webkit-transform:translateY(500px);
+	        transform:translateY(500px);
 }
 .eventList.eventTrans{
-	transform:translateY(0);
+	-webkit-transform:translateY(0);
+	        transform:translateY(0);
 }
 .eventList li{
 	float: left;
@@ -33,10 +35,12 @@
 	font-size: 12px;
 	transition: 5s ease-out all;
 	-webkit-transition: 0.5s ease-in-out all;
-	transform:translateY(-500px);
+	-webkit-transform:translateY(-500px);
+	        transform:translateY(-500px);
 }
 .history.todayTrans{
-	transform:translateY(0);
+	-webkit-transform:translateY(0);
+	        transform:translateY(0);
 }
 .timeM{
 	position: absolute;
