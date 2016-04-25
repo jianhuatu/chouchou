@@ -109,7 +109,7 @@
         responseType : 'json'
       }).success(function(data){
         if(data.code!=="0000"){
-          alert(data.msg);
+          if(!data.noMsg)alert(data.msg);
           return false;
         }
         scope.show = true;
@@ -153,7 +153,6 @@
         data : postData.join("&"),
         responseType : 'json'
       }).success(function(data){
-        // console.log(reqData);
         succFun();
         alert(data.msg);
       });
@@ -203,7 +202,7 @@
     } 
   });
 
-  chouchouServices.factory('authInterceptor', function ($rootScope, $q, $window) {
+  chouchouServices.factory('authInterceptor', function ($rootScope, $q, $window,$location) {
 
     return {
       request: function (config) {
@@ -219,7 +218,13 @@
         if (response.status === 401) {
           $location.path("/login");
         }
-        return response || $q.when(response);
+        if(response.data.code == "-1002" || response.data.code == "-1003" || response.data.code == "-1004" || response.data.code == "-1005"){
+          response.data.noMsg = true;
+          $location.path("/login");
+          return response || $q.when(response);
+        }else{
+          return response || $q.when(response);
+        }
       }
     };
   });
