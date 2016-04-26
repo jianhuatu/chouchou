@@ -19,13 +19,23 @@
     }
   })
 
-  chouchouController.controller("syCtrl",function($scope,$window,$location,getToDay,getLists,addEvent){
+  chouchouController.controller("syCtrl",function($scope,$window,$location,getToDay,getLists,addEvent,getToDayX){
     var toKenId = $window.localStorage.getItem("chouchou_token_Id");
     if(!toKenId){
       $location.path("/login");
       return false;
     }
     $scope.ck=1;
+    $scope.$parent.section  = {
+      hScrollbar: false,
+      vScrollbar: false
+    }
+    $scope.$parent.eventList  = {
+      hScrollbar: false,
+      vScrollbar: false,
+      vScroll: false,
+      x : getToDayX()
+    }
     getToDay($scope);
     getLists($scope);
 

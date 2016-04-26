@@ -33,6 +33,7 @@ angular.module('ng-iscroll', []).directive('ngIscroll', function (elemetnWHVal)
 
       // default options
       var ngiScroll_opts = {
+        bounceLock : true,
         snap: true,
         momentum: true,
         hScrollbar: false,
@@ -47,14 +48,14 @@ angular.module('ng-iscroll', []).directive('ngIscroll', function (elemetnWHVal)
       if (scroll_key === '') {
         scroll_key = attr.id;
       }
-
-      if (scope.$parent.myScrollOptions) {
-        for (var i in scope.$parent.myScrollOptions) {
-          if(typeof(scope.$parent.myScrollOptions[i])!=="object"){
-            ngiScroll_opts[i] = scope.$parent.myScrollOptions[i];
+      var iscrollKeyName = element.attr("data-iscrollKey");
+      if (scope.$parent[iscrollKeyName]) {
+        for (var i in scope.$parent[iscrollKeyName]) {
+          if(typeof(scope.$parent[iscrollKeyName][i])!=="object"){
+            ngiScroll_opts[i] = scope.$parent[iscrollKeyName][i];
           } else if (i === scroll_key) {
-            for (var k in scope.$parent.myScrollOptions[i]) {
-              ngiScroll_opts[k] = scope.$parent.myScrollOptions[i][k];
+            for (var k in scope.$parent[iscrollKeyName][i]) {
+              ngiScroll_opts[k] = scope.$parent[iscrollKeyName][i][k];
             }
           }
         }
@@ -66,11 +67,17 @@ angular.module('ng-iscroll', []).directive('ngIscroll', function (elemetnWHVal)
         if (scope.$parent.myScroll === undefined) {
           scope.$parent.myScroll = [];
         }
-        element.css({
-          height : elemetnWHVal.sectionHeight()+"px",
-          overflow : "hidden"
-        });
-        scope.$parent.myScroll[scroll_key] = new IScroll(element[0], ngiScroll_opts);
+        if(!ngiScroll_opts['vScroll']){
+          element.css({
+            overflow : "hidden"
+          });
+        }else{
+          element.css({
+            height : elemetnWHVal.sectionHeight()+"px",
+            overflow : "hidden"
+          });
+        }
+        scope.$parent.myScroll[scroll_key] = new iScroll(element[0], ngiScroll_opts);
       }
 
       // new specific setting for setting timeout using: ng-iscroll-timeout='{val}'

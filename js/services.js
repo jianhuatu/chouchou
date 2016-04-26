@@ -118,7 +118,7 @@
     }
   });
 
-  chouchouServices.factory("getToDay",function($http){
+  chouchouServices.factory("getToDay",function($http,getUserEventPostion){
     return function(scope){
       $http({
         url : 'http://101.200.200.177:3000/lists/today',
@@ -129,8 +129,35 @@
           alert(data.msg);
           return false;
         }
-        scope.todayEvent = data.info;
+        var newData = getUserEventPostion(data.info);
+        scope.todayEvent = newData;
       });
+    }
+  });
+
+  chouchouServices.factory("getUserEventPostion",function(){
+    return function(data){
+      for(var i=0,ilen=data.length;i<ilen;i++){
+        var thisStageTime = data[i]['stageTime'];
+        var dataObj = new Date(thisStageTime);
+        var hours = dataObj.getHours();
+        var minutes = dataObj.getMinutes();
+
+        data[i].left = Number(hours)*31+(31-22)/2+"px";
+        data[i].top = Number(minutes)/10*31+(31-22)/2+"px";
+      }
+
+      return data;
+    }
+  });
+
+  chouchouServices.factory("getToDayX",function(){
+    return function(){
+      var clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      var newDateObj = new Date();
+      var hours = newDateObj.getHours();
+      var left = Number(hours)*31+(31-22)/2-clientWidth/2;
+      return -1*left;
     }
   });
 

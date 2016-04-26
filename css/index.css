@@ -52,7 +52,7 @@
 .timeM span{
 	display: block;
 	height: 15%;
-	line-height: 400%;
+	line-height: 300%;
 }
 .timeH{
 	margin-left: 8%;
@@ -62,24 +62,22 @@
 }
 .timeH > div{
 	height: 100%;
-	width: 100%;
+	width:744px;
 }
 .historyMain{
 	height: 90%;
-	width: 100%;
 	position: relative;
 }
 .historyHours{
 	height: 10%;
-	width: 100%;
 }
 .historyHours span{
 	display: block;
 	float: left;
-	width: 8.3333%;
+	width: 31px;
 	height: 100%;
 	border-top: 1px solid #e54444;
-	line-height: 150%;
+	line-height: 184%;
 }
 .iconHistory{
 	display: block;
@@ -87,7 +85,7 @@
 	height: 22px;
 	position: absolute;
 	left: 0;
-	top: 155px;
+	top: 0;
 }
 .iconHistory img{
 	width: 100%;

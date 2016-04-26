@@ -1,26 +1,34 @@
 <header class="header" ng-include src="'tpl/header.html'" ng-controller="headerCtrl" no-touch-move>
 </header>
-<section  class="main" id="wrapper" ng-iscroll>
+<section  class="main" id="wrapper" ng-iscroll data-iscrollKey="section">
 	<div>
 		<div class="history" trans-dom class-trans-name="todayTrans">
 			<div class="timeM">
-				<span>60</span>
-				<span>50</span>
-				<span>40</span>
-				<span>30</span>
-				<span>20</span>
+				<span>00</span>
 				<span>10</span>
+				<span>20</span>
+				<span>30</span>
+				<span>40</span>
+				<span>50</span>
 				<em></em>
-				<!-- <p class="tag">
-					<em>分</em>/<em>时</em>
-				</p> -->
 			</div>
-			<div class="timeH">
+			<div class="timeH" ng-iscroll data-iscrollKey="eventList">
 				<div>
-					<div class="historyMain">
-						<span class="iconHistory" ng-repeat="data in todayEvent" style="left:{{$index*40}}px;"><img ng-src="img/icons-40/{{data.eventId}}.png"></span>
+					<div class="historyMain" id="userEventListObj">
+						<span class="iconHistory" ng-repeat="data in todayEvent" style="top:{{data.top}};left:{{data.left}}"><img ng-src="img/icons-40/{{data.eventId}}.png"></span>
 					</div>
 					<div class="historyHours clearfloat">
+						<span>00</span>
+						<span>01</span>
+						<span>02</span>
+						<span>03</span>
+						<span>04</span>
+						<span>05</span>
+						<span>06</span>
+						<span>07</span>
+						<span>08</span>
+						<span>09</span>
+						<span>10</span>
 						<span>11</span>
 						<span>12</span>
 						<span>13</span>
@@ -33,6 +41,7 @@
 						<span>20</span>
 						<span>21</span>
 						<span>22</span>
+						<span>23</span>
 					</div>
 				</div>
 			</div>
