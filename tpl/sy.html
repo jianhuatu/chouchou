@@ -15,7 +15,7 @@
 			<div class="timeH" ng-iscroll data-iscrollKey="eventList">
 				<div>
 					<div class="historyMain" id="userEventListObj">
-						<span class="iconHistory" ng-repeat="data in todayEvent" style="top:{{data.top}};left:{{data.left}}"><img ng-src="img/icons-40/{{data.eventId}}.png"></span>
+						<span class="iconHistory{{data.noClass}}" ng-repeat="data in todayEvent" style="top:{{data.top}};left:{{data.left}}"><img ng-src="img/icons-40/{{data.eventId}}.png"></span>
 					</div>
 					<div class="historyHours clearfloat">
 						<span>00</span>

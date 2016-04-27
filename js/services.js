@@ -174,20 +174,20 @@
         }
         postData.push(key+"="+data);
       });
+
       $http({
         url : 'http://101.200.200.177:3000/addevent',
         method : "post",
         data : postData.join("&"),
         responseType : 'json'
       }).success(function(data){
-        succFun();
-        alert(data.msg);
+        succFun(data);
       });
     }
   })
 
-  chouchouServices.factory("addEvent",function($http,getCurrentPosition,setEvent){
-   return function(id,succFun){
+  chouchouServices.factory("addEvent",function($http,getCurrentPosition,addEventShow,setEvent){
+   return function(id,succFun,scope){
     var userData = {
       eventId : id,
       positionCode : "timeOut",
@@ -210,15 +210,63 @@
       userData.positionCode = data.code;
       userData.positionMsg = data.msg;
       userData.position = data.info;
+      addEventShow(userData,scope);
       setEvent(userData,succFun);
     });
 
     setTimeout(function(){
       if(checkHttp===true)return false;
+      addEventShow(userData,scope);
       setEvent(userData,succFun);
       checkHttp = "setTime";
     },2000);
    }
+  });
+
+  chouchouServices.factory("addEventShow",function(getUserEventPostion,getStageTime){
+    return function(reqData,scope){
+      var eventData = {};
+      angular.forEach(reqData,function(data,key){
+        if(key=="position"){
+          angular.forEach(reqData[key],function(poD,poK){
+            poK=poK.replace(" ","");
+            eventData["position"+poK] = poD;
+          })
+          return false;
+        }
+        eventData[key] = data;
+      });
+
+      eventData.time = new Date().getTime();
+      eventData.stageTime = getStageTime();
+      eventData.noClass = " no";
+
+      var oldData = scope.todayEvent;
+      var newData = getUserEventPostion([eventData]);
+
+      angular.forEach(oldData,function(data,i){
+        if(data['stageTime'] == eventData.stageTime){
+          oldData[i] = newData[0];
+          newData = [];
+        }
+      });
+
+      scope.todayEvent = oldData.concat(newData);
+    }
+  });
+
+  chouchouServices.factory("getStageTime",function(){
+    return function(){
+      var dateObj = new Date();
+      var minutes = dateObj.getMinutes();
+      var minutesG = minutes%10;
+      if(minutesG>6){
+        var newMinutes = minutes-minutesG+10;
+      }else{
+        var newMinutes = minutes-minutesG;
+      }
+      return new Date(dateObj.getUTCFullYear(),dateObj.getMonth(),dateObj.getDate(),dateObj.getHours(),newMinutes,0,0,0).getTime();
+    }
   });
 
   chouchouServices.factory("encryption",function(){

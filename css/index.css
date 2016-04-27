@@ -86,10 +86,15 @@
 	position: absolute;
 	left: 0;
 	top: 0;
+	transition: 1s ease-out all;
 }
 .iconHistory img{
 	width: 100%;
 	border-radius: 50%;
+}
+.iconHistory.no{
+	-webkit-filter:grayscale(100%);
+	        filter:grayscale(100%); 
 }
 /*.tag{
 	position: absolute;

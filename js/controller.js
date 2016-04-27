@@ -19,7 +19,7 @@
     }
   })
 
-  chouchouController.controller("syCtrl",function($scope,$window,$location,getToDay,getLists,addEvent,getToDayX){
+  chouchouController.controller("syCtrl",function($scope,$window,$location,$timeout,getToDay,getLists,addEvent,getToDayX,getUserEventPostion){
     var toKenId = $window.localStorage.getItem("chouchou_token_Id");
     if(!toKenId){
       $location.path("/login");
@@ -44,9 +44,25 @@
       var thisCk = thisObj.attr("data-ck");
       if(thisCk!=="1")return false;
       thisObj.attr("data-ck","0");
-      addEvent(id,function(){
-        thisObj.attr("data-ck","1")
-      });
+      addEvent(id,function(msg){
+        thisObj.attr("data-ck","1");
+        if(msg.code!=="0000"){
+          alert(msg.msg);
+          return false;
+        }
+
+        var oldData = $scope.todayEvent;
+        var newData = getUserEventPostion([msg.info]);
+        angular.forEach(oldData,function(data,i){
+          if(data['stageTime'] == newData[0].stageTime){
+            newData[0]["noClass"] = " no";
+            $scope.todayEvent[i] = newData[0];
+            $timeout(function(){
+              $scope.todayEvent[i]["noClass"] = "";
+            },400);
+          }
+        });
+      },$scope);
     };
   });
 

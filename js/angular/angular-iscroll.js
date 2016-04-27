@@ -34,7 +34,6 @@ angular.module('ng-iscroll', []).directive('ngIscroll', function (elemetnWHVal)
       // default options
       var ngiScroll_opts = {
         bounceLock : true,
-        snap: true,
         momentum: true,
         hScrollbar: false,
         mouseWheel: true,
