@@ -66,7 +66,7 @@ angular.module('ng-iscroll', []).directive('ngIscroll', function (elemetnWHVal)
         if (scope.$parent.myScroll === undefined) {
           scope.$parent.myScroll = [];
         }
-        if(!ngiScroll_opts['vScroll']){
+        if(ngiScroll_opts['vScroll'] === false){
           element.css({
             overflow : "hidden"
           });

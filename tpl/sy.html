@@ -1,7 +1,7 @@
 <header class="header" ng-include src="'tpl/header.html'" ng-controller="headerCtrl" no-touch-move>
 </header>
-<section  class="main" id="wrapper" ng-iscroll data-iscrollKey="section">
-	<div>
+<section  class="main" id="wrapper" ng-iscroll data-iscrollKey="section" id="section">
+	<div style="height:428.25px;">
 		<div class="history" trans-dom class-trans-name="todayTrans">
 			<div class="timeM">
 				<span>00</span>
@@ -12,7 +12,7 @@
 				<span>50</span>
 				<em></em>
 			</div>
-			<div class="timeH" ng-iscroll data-iscrollKey="eventList">
+			<div class="timeH" ng-iscroll data-iscrollKey="eventList" id="eventList">
 				<div>
 					<div class="historyMain" id="userEventListObj">
 						<span class="iconHistory{{data.noClass}}" ng-repeat="data in todayEvent" style="top:{{data.top}};left:{{data.left}}"><img ng-src="img/icons-40/{{data.eventId}}.png"></span>

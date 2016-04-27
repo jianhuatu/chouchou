@@ -28,7 +28,8 @@
     $scope.ck=1;
     $scope.$parent.section  = {
       hScrollbar: false,
-      vScrollbar: false
+      vScrollbar: false,
+      vScroll: true,
     }
     $scope.$parent.eventList  = {
       hScrollbar: false,

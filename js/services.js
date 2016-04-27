@@ -3,10 +3,10 @@
 
   chouchouServices.factory("elemetnWHVal",function(){
     var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
-    var headerHeight = $("header").height();
+    // var headerHeight = $("header").height();
     return {
       sectionHeight : function(){
-        return clientHeight-headerHeight;
+        return clientHeight-64;
       }
     }
   });
